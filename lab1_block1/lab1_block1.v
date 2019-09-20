@@ -43,5 +43,6 @@ module lab1_block1(
 
 assign LEDR[9:0] = SW[9:0];
 
+// hi
 
 endmodule
