@@ -41,6 +41,7 @@ module lab1_block1(
 //  Structural coding
 //=======================================================
 
+assign LEDR[9:0] = SW[9:0];
 
 
 endmodule
