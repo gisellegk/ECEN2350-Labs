@@ -26,6 +26,7 @@ module lab1_block1(
 
 	//////////// SW //////////
 	input 		     [9:0]		SW
+
 );
 
 
@@ -34,13 +35,27 @@ module lab1_block1(
 //  REG/WIRE declarations
 //=======================================================
 
-
+reg [9:0] LED_OUTPUT;
 
 
 //=======================================================
 //  Structural coding
 //=======================================================
+always @ (KEY[0])
+	begin
+		if(KEY[0] == 0)
+			LED_OUTPUT[9:0] = SW[9:0];
+		else
+			LED_OUTPUT[9:0] = ~SW[9:0];
+	end	
 
-assign LEDR[9:0] = SW[9:0];
+assign HEX0[7:0] = 8`b_1111_1111;//h3;//b_1000_0000;
+//assign HEX1[7:0] = 8`h4;//b_0100_0000;
+//assign HEX2[7:0] = 8`h5;//b_0010_0000;
+//assign HEX3[7:0] = 8`b_0001_0000;
+//assign HEX4[7:0] = 8`b_0000_1000;
+//assign HEX5[7:0] = 8`b_0000_0100;
+
+assign LEDR[9:0] = LED_OUTPUT[9:0];
 
 endmodule

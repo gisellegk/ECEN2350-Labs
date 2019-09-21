@@ -1,0 +1,17 @@
+*.out
+*/db/*
+*/incremental_db/*
+*.summary
+*.rpt
+*.cdf
+*.done
+*.fit.*
+*.jdi
+*.map.*
+*.pin
+*.pof
+*.sld
+*.sof
+*.sta
+*.bak
+*.qdf
