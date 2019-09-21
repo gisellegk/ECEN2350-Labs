@@ -37,7 +37,6 @@ module lab1_block1(
 
 reg [9:0] LED_OUTPUT;
 
-
 //=======================================================
 //  Structural coding
 //=======================================================
@@ -49,12 +48,21 @@ always @ (KEY[0])
 			LED_OUTPUT[9:0] = ~SW[9:0];
 	end	
 
-assign HEX0[7:0] = 8`b_1111_1111;//h3;//b_1000_0000;
-//assign HEX1[7:0] = 8`h4;//b_0100_0000;
-//assign HEX2[7:0] = 8`h5;//b_0010_0000;
-//assign HEX3[7:0] = 8`b_0001_0000;
-//assign HEX4[7:0] = 8`b_0000_1000;
-//assign HEX5[7:0] = 8`b_0000_0100;
+// This works:	
+assign HEX0[7] = 1'b1;
+assign HEX0[6] = 1'b1;
+assign HEX0[5] = 1'b1;
+assign HEX0[4] = 1'b1;
+assign HEX0[3] = 1'b1;
+assign HEX0[2] = 1'b1;
+assign HEX0[1] = 1'b1;
+assign HEX0[0] = 1'b1;
+
+assign HEX1[7:0] = 8'h4;
+assign HEX2[7:0] = 8'h5;
+assign HEX3 = 8'b_0001_0000;
+assign HEX4[7:0] = 8'b_0000_1000;
+assign HEX5[7:0] = 8'b_0000_0100;
 
 assign LEDR[9:0] = LED_OUTPUT[9:0];
 

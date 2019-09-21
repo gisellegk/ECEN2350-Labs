@@ -5,12 +5,13 @@
 set_global_assignment -name FAMILY "MAX 10 FPGA"
 set_global_assignment -name DEVICE 10M50DAF484C7G
 set_global_assignment -name TOP_LEVEL_ENTITY "lab1_block1"
-set_global_assignment -name ORIGINAL_QUARTUS_VERSION "16.0.0"
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.0
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:38:07 SEPTEMBER 20,2019"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 484
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 7
+
 
 #============================================================
 # CLOCK
@@ -125,8 +126,8 @@ set_location_assignment PIN_L19 -to HEX5[7]
 #============================================================
 # KEY
 #============================================================
-set_instance_assignment -name IO_STANDARD "3.3 V Schmitt Trigger" -to KEY[0]
-set_instance_assignment -name IO_STANDARD "3.3 V Schmitt Trigger" -to KEY[1]
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to KEY[0]
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to KEY[1]
 set_location_assignment PIN_B8 -to KEY[0]
 set_location_assignment PIN_A7 -to KEY[1]
 
