@@ -1,5 +1,5 @@
 module sevensegment(
-    input       [4:0]   NUM,
+    input       [3:0]   NUM,
     input               NEGATIVE,
     input               DECIMAL,
     input               DISABLE,
@@ -10,16 +10,17 @@ module sevensegment(
 
 reg [7:0] OUTPUT;
 
-always @ (NUM[7:0], NEGATIVE, DECIMAL, DISABLE)
+always @ (NUM[3:0], NEGATIVE, DECIMAL, DISABLE)
     begin
         if(DISABLE)
-            OUTPUT = 8'b_1111_1111;
+            OUTPUT[7:0] = 8'b_1111_1111;
         else 
+        begin
             OUTPUT[7] = ~DECIMAL;
             if(NEGATIVE)
                 OUTPUT[6:0] = 7'b_011_1111;
             else
-                case(NUM[4:0]):
+                case(NUM[3:0])
                     8'h0:
                         OUTPUT[6:0] = 7'b_100_0000;
                     8'h1: 
@@ -54,8 +55,10 @@ always @ (NUM[7:0], NEGATIVE, DECIMAL, DISABLE)
                         OUTPUT[6:0] = 7'b_000_1110;
 
                     default: OUTPUT[6:0] = 7'b010_0111; // this is like a lower case c. should never run, but just in case it does, it will do something.
+                endcase
+        end
     end
-    
-    SEVENSEG_OUT = OUTPUT;
+
+    assign SEVENSEG_OUT = OUTPUT;
     
 endmodule

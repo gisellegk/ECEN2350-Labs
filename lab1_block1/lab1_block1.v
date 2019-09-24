@@ -36,6 +36,12 @@ module lab1_block1(
 //=======================================================
 
 reg [9:0] LED_OUTPUT;
+reg [3:0] Day0;
+reg [3:0] Day1;
+reg [3:0] Month0;
+reg [3:0] Month1;
+reg [3:0] Year0;
+reg [3:0] Year1;
 
 //=======================================================
 //  Structural coding
@@ -48,22 +54,35 @@ always @ (KEY[0])
 			LED_OUTPUT[9:0] = ~SW[9:0];
 	end	
 
-// This works:	
-assign HEX0[7] = 1'b1;
-assign HEX0[6] = 1'b1;
-assign HEX0[5] = 1'b1;
-assign HEX0[4] = 1'b1;
-assign HEX0[3] = 1'b1;
-assign HEX0[2] = 1'b1;
-assign HEX0[1] = 1'b1;
-assign HEX0[0] = 1'b1;
+always @ (KEY[1])
+	begin
+		if(KEY[1] == 0)
+			begin
+				Day0 = 1;
+				Day1 = 0;
+				Month0 =9;
+				Month1 =0;
+				Year0 =8;
+				Year1 = 9;
+			end
+		else
+			begin
+				Day0 = 8;
+				Day1 = 0;
+				Month0 = 6;
+				Month1 =0;
+				Year0 =5;
+				Year1 = 9;
 
-assign HEX1[7:0] = 8'h4;
-assign HEX2[7:0] = 8'h5;
-assign HEX3 = 8'b_0001_0000;
-assign HEX4[7:0] = 8'b_0000_1000;
-assign HEX5[7:0] = 8'b_0000_0100;
-
+			end
+	end	
+//09 01 98
 assign LEDR[9:0] = LED_OUTPUT[9:0];
+sevensegment inst_0(Year0, 0, 0, 0, HEX0);
+sevensegment inst_1(Year1, 0, 0, 0, HEX1);
+sevensegment inst_2(Day0, 0, 1, 0, HEX2);
+sevensegment inst_3(Day1, 0, 0, 0, HEX3);
+sevensegment inst_4(Month0, 0, 1, 0, HEX4);
+sevensegment inst_5(Month1, 0, 0, 0, HEX5);
 
 endmodule
