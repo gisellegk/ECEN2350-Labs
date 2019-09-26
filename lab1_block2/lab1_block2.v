@@ -44,12 +44,12 @@ reg SUMSIGN; //show sign = 1
 //  Structural coding
 //=======================================================
 assign LEDR[9:0] = 10'b0;
-sevensegment inst_ASIGN(0, 1, 0, ~SW[7], HEX5);
-sevensegment inst_A(A, 0, 0, 0, HEX4);
-sevensegment inst_BSIGN(0, 1, 0, ~SW[3], HEX3);
-sevensegment inst_B(B, 0, 0, 0, HEX2);
-sevensegment inst_SUMSIGN(0, 1, 0, ~SUMSIGN, HEX1);
-sevensegment inst_SUM(SUM, 0, 0, 0, HEX0);
+sevensegment inst_ASIGN(4'b0, 1'b1, 1'b0, ~SW[7], HEX5);
+sevensegment inst_A(A, 1'b0, 1'b0, 1'b0, HEX4);
+sevensegment inst_BSIGN(4'b0, 1'b1, 1'b0, ~SW[3], HEX3);
+sevensegment inst_B(B, 1'b0, 1'b0, 1'b0, HEX2);
+sevensegment inst_SUMSIGN(4'b0, 1'b1, 1'b0, ~SUMSIGN, HEX1);
+sevensegment inst_SUM(SUM, 1'b0, 1'b0, 1'b0, HEX0);
 
 twoscompval dispA(SW[7:4], A);
 twoscompval dispB(SW[3:0], B);
