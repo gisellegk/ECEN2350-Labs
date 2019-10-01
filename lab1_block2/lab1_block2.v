@@ -36,9 +36,11 @@ module lab1_block2(
 
 wire [3:0] A;
 wire [3:0] B;
-reg [3:0] SUM;
-reg SUMSIGN; //show sign = 1
+wire [3:0] SUM_OUT;
 
+wire [3:0] SUM;
+wire SUMSIGN; //show sign = 1
+wire [3:0] CARRY;
 
 //=======================================================
 //  Structural coding
@@ -49,16 +51,24 @@ sevensegment inst_A(A, 1'b0, 1'b0, 1'b0, HEX4);
 sevensegment inst_BSIGN(4'b0, 1'b1, 1'b0, ~SW[3], HEX3);
 sevensegment inst_B(B, 1'b0, 1'b0, 1'b0, HEX2);
 sevensegment inst_SUMSIGN(4'b0, 1'b1, 1'b0, ~SUMSIGN, HEX1);
-sevensegment inst_SUM(SUM, 1'b0, 1'b0, 1'b0, HEX0);
+sevensegment inst_SUM(SUM_OUT, 1'b0, 1'b0, 1'b0, HEX0);
 
 twoscompval dispA(SW[7:4], A);
 twoscompval dispB(SW[3:0], B);
-//twoscompval dispSUM(idk);
+twoscompval dispSUM(SUM[3:0], SUM_OUT);
 
-always @ (SW[7:0])
+assign SUMSIGN = SUM[3];
+
+adder b0(SW[4], SW[0], 1'b0, SUM[0], CARRY[0]);
+adder b1(SW[5], SW[1], CARRY[0], SUM[1], CARRY[1]);
+adder b2(SW[6], SW[2], CARRY[1], SUM[2], CARRY[2]);
+adder b3(SW[7], SW[3], CARRY[2], SUM[3], CARRY[3]);
+
+/*always @ (SW[7:0])
 	begin
-
-	end
-
-
+		if(sign bits dont match)
+			SUMOUT = SUM;
+		else
+			SUMOUT = overflow;
+	end*/
 endmodule
