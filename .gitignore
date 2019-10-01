@@ -1,5 +1,7 @@
 *.out
 */db/*
+*/*/db/*
+*/*/incremental_db/*
 */incremental_db/*
 *.summary
 *.rpt
