@@ -42,16 +42,18 @@ wire [3:0] SUM;
 wire SUMSIGN; //show sign = 1
 wire [3:0] CARRY;
 
+wire [3:0]OVERFLOW;
+
 //=======================================================
 //  Structural coding
 //=======================================================
-assign LEDR[9:0] = 10'b0;
+assign LEDR[8:0] = 9'b0;
 sevensegment inst_ASIGN(4'b0, 1'b1, 1'b0, ~SW[7], HEX5);
 sevensegment inst_A(A, 1'b0, 1'b0, 1'b0, HEX4);
 sevensegment inst_BSIGN(4'b0, 1'b1, 1'b0, ~SW[3], HEX3);
 sevensegment inst_B(B, 1'b0, 1'b0, 1'b0, HEX2);
-sevensegment inst_SUMSIGN(4'b0, 1'b1, 1'b0, ~SUMSIGN, HEX1);
-sevensegment inst_SUM(SUM_OUT, 1'b0, 1'b0, 1'b0, HEX0);
+sevensegment inst_SUMSIGN(4'b0, SUMSIGN & ~OVERFLOW[0], 1'b0, ~SUMSIGN & ~OVERFLOW[0], HEX1); // will disable if SUMSIGN = 0 AND OVERFLOW = 0. If OVERFLOW = 1 ignore SUMSIGN, if OVERFLOW = 0, display SUMSIGN
+sevensegment inst_SUM((SUM_OUT & ~OVERFLOW) | (4'hF & OVERFLOW) , 1'b0, 1'b0, 1'b0, HEX0); // will disp SUM_OUT if OVERFLOW = 0, 0x0F if OVERFLOW = 1
 
 twoscompval dispA(SW[7:4], A);
 twoscompval dispB(SW[3:0], B);
@@ -63,6 +65,13 @@ adder b0(SW[4], SW[0], 1'b0, SUM[0], CARRY[0]);
 adder b1(SW[5], SW[1], CARRY[0], SUM[1], CARRY[1]);
 adder b2(SW[6], SW[2], CARRY[1], SUM[2], CARRY[2]);
 adder b3(SW[7], SW[3], CARRY[2], SUM[3], CARRY[3]);
+
+// input signs are the same AND sum sign is different = oF
+assign OVERFLOW[0] = (SW[3] ~^ SW[7]) & (SUM[3] ^ SW[3]);
+assign OVERFLOW[1] = (SW[3] ~^ SW[7]) & (SUM[3] ^ SW[3]);
+assign OVERFLOW[2] = (SW[3] ~^ SW[7]) & (SUM[3] ^ SW[3]);
+assign OVERFLOW[3] = (SW[3] ~^ SW[7]) & (SUM[3] ^ SW[3]);
+//assign LEDR[9] = OVERFLOW;
 
 /*always @ (SW[7:0])
 	begin
