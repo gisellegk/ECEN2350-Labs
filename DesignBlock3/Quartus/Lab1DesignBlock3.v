@@ -28,42 +28,44 @@ module lab1_block2(
 );
 
 
-
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
 
-wire [3:0] A;
-wire [3:0] B;
-reg [3:0] SUM;
-reg SUMSIGN; //show sign = 1
 
+reg [3:0] INPUT_1;
+reg [3:0] INPUT_0;
+
+wire [3:0] ABS_1;
+wire [3:0] ABS_0;
 
 //=======================================================
 //  Structural coding
 //=======================================================
-assign LEDR[9:0] = 10'b0;
-sevensegment inst_ASIGN(4'b0, 1'b1, 1'b0, ~SW[7], HEX5);
-sevensegment inst_A(A, 1'b0, 1'b0, 1'b0, HEX4);
-sevensegment inst_BSIGN(4'b0, 1'b1, 1'b0, ~SW[3], HEX3);
-sevensegment inst_B(B, 1'b0, 1'b0, 1'b0, HEX2);
-sevensegment inst_SUMSIGN(4'b0, 1'b1, 1'b0, ~SUMSIGN, HEX1);
-sevensegment inst_SUM(SUM, 1'b0, 1'b0, 1'b0, HEX0);
+assign LEDR[9:0] = 10'b0; // LEDs off
 
-twoscompval dispA(SW[7:4], A);
-twoscompval dispB(SW[3:0], B);
-//twoscompval dispSUM(idk);
+twoscompval abs1(SW[7:4], ABS_1);
+twoscompval abs0(SW[3:0], ABS_0);
+twoscompval dispSUM(SUM[3:0], SUM_OUT);
 
-always @ (SW[7:0])
-	begin
-	//	if( == 0)
-	//		LED_OUTPUT[9:0] = SW[9:0];
-	//	else
-	//		begin
-	//			if()
-	//			else
-	//		end
-	end
+sevensegment inst_1SIGN(4'b0, 1'b1, 1'b0, ~SW[7], HEX5);
+sevensegment inst_1(A, 1'b0, 1'b0, 1'b0, HEX4);
+
+sevensegment inst_0SIGN(4'b0, 1'b1, 1'b0, ~SW[3], HEX1);
+sevensegment inst_0(B, 1'b0, 1'b0, 1'b0, HEX0);
+
+//disable middle 2 displays
+sevensegment off_1(4'b0, 1'b1, 1'b0, 1'b1, HEX1);
+sevensegment off_0(4'b0, 1'b0, 1'b0, 1'b1, HEX0);
+
+
+always @ (SW[9:8]) begin
+	if( SW[9:8] == 2'b10) begin
+
+	end else if ( SW[9:8] == 2'b11) begin
+
+	end 
+end
 
 
 endmodule
