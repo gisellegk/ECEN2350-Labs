@@ -18,3 +18,5 @@
 *.bak
 *.qdf
 *.qws
+*.vvp
+*.vcd
