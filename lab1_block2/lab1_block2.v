@@ -36,6 +36,7 @@ module lab1_block2(
 
 wire [3:0] A;
 wire [3:0] B;
+wire [3:0] B_FLIPPED;
 wire [3:0] SUM_OUT;
 
 wire [3:0] SUM;
@@ -44,27 +45,32 @@ wire [3:0] CARRY;
 
 wire [3:0]OVERFLOW;
 
+reg [3:0] B_REG;
+wire [3:0] B_FINAL;
+
 //=======================================================
 //  Structural coding
 //=======================================================
 assign LEDR[9:0] = 10'b0; // LEDs off
 
-adder b0(SW[4], SW[0], 1'b0, SUM[0], CARRY[0]);
-adder b1(SW[5], SW[1], CARRY[0], SUM[1], CARRY[1]);
-adder b2(SW[6], SW[2], CARRY[1], SUM[2], CARRY[2]);
-adder b3(SW[7], SW[3], CARRY[2], SUM[3], CARRY[3]);
+adder b0(SW[4], B_FINAL[0], 1'b0, SUM[0], CARRY[0]);
+adder b1(SW[5], B_FINAL[1], CARRY[0], SUM[1], CARRY[1]);
+adder b2(SW[6], B_FINAL[2], CARRY[1], SUM[2], CARRY[2]);
+adder b3(SW[7], B_FINAL[3], CARRY[2], SUM[3], CARRY[3]);
 
 assign SUMSIGN = SUM[3]; // honestly this is unnecessary but it makes it more readable...
 
 // input signs are the same AND sum sign is different = oF
-assign OVERFLOW[0] = (SW[3] ~^ SW[7]) & (SUM[3] ^ SW[3]);
-assign OVERFLOW[1] = (SW[3] ~^ SW[7]) & (SUM[3] ^ SW[3]);
-assign OVERFLOW[2] = (SW[3] ~^ SW[7]) & (SUM[3] ^ SW[3]);
-assign OVERFLOW[3] = (SW[3] ~^ SW[7]) & (SUM[3] ^ SW[3]);
+assign OVERFLOW[0] = (B_FINAL[3] ~^ SW[7]) & (SUM[3] ^ SW[7]);
+assign OVERFLOW[1] = (B_FINAL[3] ~^ SW[7]) & (SUM[3] ^ SW[7]);
+assign OVERFLOW[2] = (B_FINAL[3] ~^ SW[7]) & (SUM[3] ^ SW[7]);
+assign OVERFLOW[3] = (B_FINAL[3] ~^ SW[7]) & (SUM[3] ^ SW[7]);
 
-twoscompval dispA(SW[7:4], A);
-twoscompval dispB(SW[3:0], B);
+twoscompval absA(SW[7:4], A);
+twoscompval absB(SW[3:0], B);
 twoscompval dispSUM(SUM[3:0], SUM_OUT);
+
+flipsign flipB(SW[3:0], B_FLIPPED);
 
 sevensegment inst_ASIGN(4'b0, 1'b1, 1'b0, ~SW[7], HEX5);
 sevensegment inst_A(A, 1'b0, 1'b0, 1'b0, HEX4);
@@ -72,5 +78,15 @@ sevensegment inst_BSIGN(4'b0, 1'b1, 1'b0, ~SW[3], HEX3);
 sevensegment inst_B(B, 1'b0, 1'b0, 1'b0, HEX2);
 sevensegment inst_SUMSIGN(4'b0, SUMSIGN & ~OVERFLOW[0], 1'b0, ~SUMSIGN & ~OVERFLOW[0], HEX1); // will disable if SUMSIGN = 0 AND OVERFLOW = 0. If OVERFLOW = 1 ignore SUMSIGN, if OVERFLOW = 0, display SUMSIGN
 sevensegment inst_SUM((SUM_OUT & ~OVERFLOW) | (4'hF & OVERFLOW) , 1'b0, 1'b0, 1'b0, HEX0); // will disp SUM_OUT if OVERFLOW = 0, 0x0F if OVERFLOW = 1
+
+always @ (KEY[0]) 
+	begin
+		if(KEY[0])
+			B_REG = SW[3:0];
+		else
+			B_REG = B_FLIPPED;
+	end
+
+assign B_FINAL = B_REG;
 
 endmodule
