@@ -61,9 +61,64 @@ sevensegment off_0(4'b0, 1'b0, 1'b0, 1'b1, HEX0);
 
 always @ (SW[9:8]) begin
 	if( SW[9:8] == 2'b10) begin
-
+		//interpret as unsigned values
+		if(SW[7:4]<SW[3:0]) begin
+			//Turn on LED 0 and turn off other leds
+			LED_OUTPUT[0] = 1;
+			LED_OUTPUT[1] = 0;
+			LED_OUTPUT[2] = 0; end
+		else if (SW[7:4]<SW[3:0]) begin
+			//turn on LED 1 and turn off other leds
+			LED_OUTPUT[1] = 1;
+			LED_OUTPUT[2] = 0;
+			LED_OUTPUT[0] = 0; end
+		else if (SW[7:4]==SW[3:0])begin
+			//turn on LED 2 and turn off other leds
+			LED_OUTPUT[2] = 1;
+			LED_OUTPUT[1] = 0;
+			LED_OUTPUT[0] = 0; end
+	
 	end else if ( SW[9:8] == 2'b11) begin
+		//interpret as 2s comp entry
+		if (SW[7:4]==SW[3:0])begin
+			//turn on LED 2 and turn off other leds
+			LED_OUTPUT[2] = 1;
+			LED_OUTPUT[1] = 0;
+			LED_OUTPUT[0] = 0; end
+		else if(SW[7]==1 && SW[3] == 0)begin //input 1 is negative and 2 is posative
+			//turn on LED 1 and turn off other leds
+			LED_OUTPUT[1] = 1;
+			LED_OUTPUT[2] = 0;
+			LED_OUTPUT[0] = 0; end 
+		else if(SW[7]==0 && SW[3] == 1)begin //input 2 is negative and 1 is posative
+			//turn on LED 0 and turn off other leds
+			LED_OUTPUT[1] = 0;
+			LED_OUTPUT[2] = 0;
+			LED_OUTPUT[0] = 1; end 
+		else if( SW[7]== 1 && SW[3] == 1)begin //when both negative
+			if(SW[6:4]<SW[2:0]) begin //when input 1 is greater than input 2
+				//Turn on LED 1 and turn off other leds
+				LED_OUTPUT[0] = 0;
+				LED_OUTPUT[1] = 1;
+				LED_OUTPUT[2] = 0; end
+			else if (SW[7:4]<SW[3:0]) begin //when input 2 is greater than input 1
+				//turn on LED 0 and turn off other leds
+				LED_OUTPUT[1] = 0;
+				LED_OUTPUT[2] = 0;
+				LED_OUTPUT[0] = 1; end
+		else if( SW[7]== 0 && SW[3] == 0)begin //when both posative
+			if(SW[6:4]<SW[2:0]) begin //when input 2 is greater than input 1
+				//Turn on LED 0 and turn off other leds
+				LED_OUTPUT[0] = 1;
+				LED_OUTPUT[1] = 0;
+				LED_OUTPUT[2] = 0; end
+			else if (SW[7:4]<SW[3:0]) begin //when input 1 is greater than input 2
+				//turn on LED 1 and turn off other leds
+				LED_OUTPUT[1] = 1;
+				LED_OUTPUT[2] = 0;
+				LED_OUTPUT[0] = 0; end
 
+		end //this may be an extra end
 	end 
 end
 
