@@ -1,7 +1,7 @@
-//iverilog -o test.vvp test.v lab1_block2.v adder.v twoscompvalue.v sevensegment.v
-//vvp test.vvp
+//iverilog -o test_2.vvp test_2.v lab1_block2.v adder.v twoscompvalue.v sevensegment.v flipsign.v
+//vvp test_2.vvp
 `timescale 1 ns / 100 ps
-module test();
+module test_2();
 
 reg [9:0] SW_IN;
 wire [7:0] HEX0;
