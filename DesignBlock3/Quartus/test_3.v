@@ -4,7 +4,7 @@
 module test();
 
 reg [9:0] SW_IN;
-reg [1:0] KEY_IN
+reg [1:0] KEY_IN;
 wire [7:0] HEX0;
 wire [7:0] HEX1;
 wire [7:0] HEX2;
@@ -12,7 +12,7 @@ wire [7:0] HEX3;
 wire [7:0] HEX4;
 wire [7:0] HEX5;
 
-lab1_block3 blah
+Lab1DesignBlock3 blah
 (
     .HEX0(HEX0),
     .HEX1(HEX1),
