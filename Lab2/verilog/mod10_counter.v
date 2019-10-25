@@ -1,3 +1,11 @@
+/*
+* OUTPUT: COUNT is a 4 bit unsigned binary # with range 0-9
+*
+* On every positive edge of the clock, the value of COUNT (in binary) will increase by 1.
+* When the value in COUNT = 9, the counter will roll back to 0
+* setting reset_n = 0 will reset the COUNT to 0, regardless of other factors. 
+*/
+
 module mod10_counter(
     input               clock,
     input               reset_n,
