@@ -1,0 +1,46 @@
+VCD info: dumpfile mod10_counter_test.vcd opened for output.
+Starting simulation
+                   0  clock = 0,  reset = 0,  count = 0000
+                  10  clock = 1,  reset = 1,  count = 0001
+                  20  clock = 0,  reset = 1,  count = 0001
+                  30  clock = 1,  reset = 1,  count = 0010
+                  40  clock = 0,  reset = 1,  count = 0010
+                  50  clock = 1,  reset = 1,  count = 0011
+                  60  clock = 0,  reset = 1,  count = 0011
+                  70  clock = 1,  reset = 1,  count = 0100
+                  80  clock = 0,  reset = 1,  count = 0100
+                  90  clock = 1,  reset = 1,  count = 0101
+                 100  clock = 0,  reset = 1,  count = 0101
+                 110  clock = 1,  reset = 1,  count = 0110
+                 120  clock = 0,  reset = 1,  count = 0110
+                 130  clock = 1,  reset = 1,  count = 0111
+                 140  clock = 0,  reset = 1,  count = 0111
+                 150  clock = 1,  reset = 1,  count = 1000
+                 160  clock = 0,  reset = 1,  count = 1000
+                 170  clock = 1,  reset = 1,  count = 1001
+                 180  clock = 0,  reset = 1,  count = 1001
+                 190  clock = 1,  reset = 1,  count = 0000
+                 200  clock = 0,  reset = 1,  count = 0000
+                 210  clock = 1,  reset = 1,  count = 0001
+                 220  clock = 0,  reset = 1,  count = 0001
+                 230  clock = 1,  reset = 1,  count = 0010
+                 240  clock = 0,  reset = 1,  count = 0010
+                 250  clock = 1,  reset = 1,  count = 0011
+                 260  clock = 0,  reset = 1,  count = 0011
+                 270  clock = 1,  reset = 1,  count = 0100
+                 280  clock = 0,  reset = 1,  count = 0100
+                 290  clock = 1,  reset = 1,  count = 0101
+                 300  clock = 0,  reset = 1,  count = 0101
+                 310  clock = 1,  reset = 1,  count = 0110
+                 320  clock = 0,  reset = 1,  count = 0110
+                 330  clock = 1,  reset = 1,  count = 0111
+                 340  clock = 0,  reset = 1,  count = 0111
+                 350  clock = 1,  reset = 1,  count = 1000
+                 360  clock = 0,  reset = 1,  count = 1000
+                 370  clock = 1,  reset = 1,  count = 1001
+                 380  clock = 0,  reset = 1,  count = 1001
+                 390  clock = 1,  reset = 1,  count = 0000
+                 400  clock = 0,  reset = 1,  count = 0000
+                 410  clock = 1,  reset = 1,  count = 0001
+                 420  clock = 0,  reset = 1,  count = 0001
+Simulation ended.
