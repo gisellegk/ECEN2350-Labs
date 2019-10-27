@@ -39,8 +39,12 @@ wire [3:0] num;
 //=======================================================
 //  Structural coding
 //=======================================================
+<<<<<<< HEAD
 
 binary_counter(MAX10_CLK1_50,reset_n,num);
 
+=======
+sevensegment inst_0(5, 0, 0, 0, HEX0);
+>>>>>>> fd1f85559250a62ee3e57f9a6a18b0e92db9c847
 
 endmodule

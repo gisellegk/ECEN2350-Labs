@@ -5,7 +5,7 @@
 set_global_assignment -name FAMILY "MAX 10 FPGA"
 set_global_assignment -name DEVICE 10M50DAF484C7G
 set_global_assignment -name TOP_LEVEL_ENTITY "Lab2"
-set_global_assignment -name ORIGINAL_QUARTUS_VERSION "16.0.0"
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.0
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:12:49 OCTOBER 25,2019"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
@@ -125,8 +125,8 @@ set_location_assignment PIN_L19 -to HEX5[7]
 #============================================================
 # KEY
 #============================================================
-set_instance_assignment -name IO_STANDARD "3.3 V Schmitt Trigger" -to KEY[0]
-set_instance_assignment -name IO_STANDARD "3.3 V Schmitt Trigger" -to KEY[1]
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to KEY[0]
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to KEY[1]
 set_location_assignment PIN_B8 -to KEY[0]
 set_location_assignment PIN_A7 -to KEY[1]
 
@@ -188,7 +188,7 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
-set_global_assignment -name PROJECT_OUTPUT_DIRECTORY "C:\\Users\\Giselle\\Desktop\\classes\\ECEN2350\\labs\\ECEN2350-Labs\\Lab2\\output_files"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY .\\output_files
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
