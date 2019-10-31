@@ -35,12 +35,17 @@ module Lab2(
 
 wire reset_n;
 wire [3:0] num;
-
+wire clockOneHz;
 //=======================================================
 //  Structural coding
 //=======================================================
 
+assign reset_n = ~KEY[0];
+assign LEDR[1] = clockOneHz;
+
 sevensegment inst_0(5, 0, 0, 0, HEX0);
+tenMhzToHzDivider dividinator(ADC_CLK_10,reset_n,clockOneHz);
+
 
 
 endmodule
