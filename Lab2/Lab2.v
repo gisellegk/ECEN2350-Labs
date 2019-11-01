@@ -39,17 +39,37 @@ wire [3:0] num_0;
 wire [3:0] num_1;
 wire clock_1Hz;
 
+wire [6:0] binary_value;
+wire [3:0] day_1s; // 1's place of day val, can be 0-9.
+wire [1:0] day_10s; // 10's place of day val, can be 0, 1, 2, 3
+wire [1:0] month; // only 4 valid: january (0), february (1), march(2), april(3)
+
+
 //=======================================================
 //  Structural coding
 //=======================================================
+assign binary_value = (num_1 *10) + ({3'b0,num_0});
 
 divider div(ADC_CLK_10, reset_n, clock_1Hz);
 mod10_counter counter_0(clock_1Hz, reset_n, num_0);
 mod10_counter counter_1((num_0==0), reset_n, num_1); // 10's place clocks every time the 1's place hits zero.
-assign reset_n = KEY[0]; // active LOW. When button is pressed, reset_n = 0 
-assign LEDR[1] = clock_1Hz;
 
+assign reset_n = KEY[0]; // active LOW. When button is pressed, reset_n = 0 
+
+dateconverter dc(binary_value, 0, month, day_1s, day_10s);
+
+// BCD number
 sevensegment inst_0(num_0[3:0], 0, 0, 0, HEX4);
 sevensegment inst_1(num_1[3:0], 0, 0, (num_1==0), HEX5);
+
+// Month
+sevensegment month_0(month+1, 0, 0, 0, HEX2);
+sevensegment month_1(0, 0, 0, 1, HEX3); // MSD of month is always blank
+// Day
+sevensegment day_0_disp(day_1s, 0, 0, 0, HEX0);
+sevensegment day_1_disp(day_10s, 0, 0, (day_1==0),HEX1);
+
+// clock to LED
+assign LEDR[1] = clock_1Hz;
 
 endmodule
