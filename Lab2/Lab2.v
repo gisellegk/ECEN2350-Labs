@@ -45,7 +45,7 @@ wire clock_1Hz;
 
 divider div(ADC_CLK_10, reset_n, clock_1Hz);
 mod10_counter counter_0(clock_1Hz, reset_n, num_0);
-mod10_counter counter_1((num_0==0), reset_n, num_1);
+mod10_counter counter_1((num_0==0), reset_n, num_1); // 10's place clocks every time the 1's place hits zero.
 assign reset_n = KEY[0]; // active LOW. When button is pressed, reset_n = 0 
 assign LEDR[1] = clock_1Hz;
 
