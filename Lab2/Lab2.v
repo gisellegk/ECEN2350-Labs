@@ -63,8 +63,16 @@ divider div17(ADC_CLK_10, reset_n, clock[16]);
 divider div18(ADC_CLK_10, reset_n, clock[17]);
 divider div19(ADC_CLK_10, reset_n, clock[18]);
 divider div20(ADC_CLK_10, reset_n, clock[19]); // 0.965 hz
+
 mod10_counter counter(clock[19], reset_n, num);
+
+wire clockOneHz;
+assign reset_n = ~KEY[0];
+assign LEDR[1] = clockOneHz;
+
 sevensegment inst_0(5, 0, 0, 0, HEX0);
+tenMhzToHzDivider dividinator(ADC_CLK_10,reset_n,clockOneHz);
+
 
 always@(reset_n)
 
