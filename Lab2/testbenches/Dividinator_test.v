@@ -1,4 +1,5 @@
-// iverilog -o Dividinator_test.out Dividinator_test.v ../verilog/tenMhzToHzDivider.v; vvp Dividinator_test.out > Dividinator_test.txt; gtkwave Dividinator_test.vcd
+// iverilog -o Dividinator_test.out Dividinator_test.v ../verilog/divider.v; vvp Dividinator_test.out > Dividinator_test.txt; gtkwave Dividinator_test.vcd -g
+
 
 `timescale 1 ns / 100 ps
 
