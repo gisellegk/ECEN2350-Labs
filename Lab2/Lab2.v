@@ -33,14 +33,42 @@ module Lab2(
 //  REG/WIRE declarations
 //=======================================================
 
+reg init;
 wire reset_n;
 wire [3:0] num;
+wire [19:0]clock;
+
+
 
 //=======================================================
 //  Structural coding
 //=======================================================
-
+divider div1(ADC_CLK_10, reset_n, clock[0]);
+divider div2(ADC_CLK_10, reset_n, clock[1]);
+divider div3(ADC_CLK_10, reset_n, clock[2]);
+divider div4(ADC_CLK_10, reset_n, clock[3]);
+divider div5(ADC_CLK_10, reset_n, clock[4]);
+divider div6(ADC_CLK_10, reset_n, clock[5]);
+divider div7(ADC_CLK_10, reset_n, clock[6]);
+divider div8(ADC_CLK_10, reset_n, clock[7]);
+divider div9(ADC_CLK_10, reset_n, clock[8]);
+divider div10(ADC_CLK_10, reset_n, clock[9]);
+divider div11(ADC_CLK_10, reset_n, clock[10]);
+divider div12(ADC_CLK_10, reset_n, clock[11]);
+divider div13(ADC_CLK_10, reset_n, clock[12]);
+divider div14(ADC_CLK_10, reset_n, clock[13]);
+divider div15(ADC_CLK_10, reset_n, clock[14]);
+divider div16(ADC_CLK_10, reset_n, clock[15]);
+divider div17(ADC_CLK_10, reset_n, clock[16]);
+divider div18(ADC_CLK_10, reset_n, clock[17]);
+divider div19(ADC_CLK_10, reset_n, clock[18]);
+divider div20(ADC_CLK_10, reset_n, clock[19]); // 0.965 hz
+mod10_counter counter(clock[19], reset_n, num);
 sevensegment inst_0(5, 0, 0, 0, HEX0);
+
+always@(reset_n)
+
+end
 
 
 endmodule
