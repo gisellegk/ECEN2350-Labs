@@ -9,11 +9,11 @@ reg reset;
 
 wire count_out;
 
-tenMhzToHzDivider u1 
+divider u1 
 (
     .clock(clock),
     .reset_n(reset),
-    .newclock(count_out)
+    .div_clock(count_out)
 );
 
 initial begin
@@ -24,14 +24,14 @@ initial begin
     reset=0;
     #5 reset = 1;
 
-    #5000000000  $display("Simulation ended.");
+    #2000000000  $display("Simulation ended.");
     $finish;
 end
 always  
-        #50  clock = ~clock;  // creates a 100Mhz clock
+        #50  clock = ~clock;  // creates a 10Mhz clock
 
 initial begin
-      #100 $monitor($time, "  reset = %b,  count = %b", reset, count_out);
+      #1000 $monitor($time, "  reset = %b,  count = %b", reset, count_out);
 end
 
 endmodule
