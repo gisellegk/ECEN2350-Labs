@@ -35,48 +35,21 @@ module Lab2(
 
 reg init;
 wire reset_n;
-wire [3:0] num;
-wire [19:0]clock;
-
-
+wire [3:0] num_0;
+wire [3:0] num_1;
+wire clock_1Hz;
 
 //=======================================================
 //  Structural coding
 //=======================================================
-divider div1(ADC_CLK_10, reset_n, clock[0]);
-divider div2(ADC_CLK_10, reset_n, clock[1]);
-divider div3(ADC_CLK_10, reset_n, clock[2]);
-divider div4(ADC_CLK_10, reset_n, clock[3]);
-divider div5(ADC_CLK_10, reset_n, clock[4]);
-divider div6(ADC_CLK_10, reset_n, clock[5]);
-divider div7(ADC_CLK_10, reset_n, clock[6]);
-divider div8(ADC_CLK_10, reset_n, clock[7]);
-divider div9(ADC_CLK_10, reset_n, clock[8]);
-divider div10(ADC_CLK_10, reset_n, clock[9]);
-divider div11(ADC_CLK_10, reset_n, clock[10]);
-divider div12(ADC_CLK_10, reset_n, clock[11]);
-divider div13(ADC_CLK_10, reset_n, clock[12]);
-divider div14(ADC_CLK_10, reset_n, clock[13]);
-divider div15(ADC_CLK_10, reset_n, clock[14]);
-divider div16(ADC_CLK_10, reset_n, clock[15]);
-divider div17(ADC_CLK_10, reset_n, clock[16]);
-divider div18(ADC_CLK_10, reset_n, clock[17]);
-divider div19(ADC_CLK_10, reset_n, clock[18]);
-divider div20(ADC_CLK_10, reset_n, clock[19]); // 0.965 hz
 
-mod10_counter counter(clock[19], reset_n, num);
+divider div(ADC_CLK_10, reset_n, clock_1Hz);
+mod10_counter counter_0(clock_1Hz, reset_n, num_0);
+mod10_counter counter_1((num_0==0), reset_n, num_1);
+assign reset_n = KEY[0]; // active LOW. When button is pressed, reset_n = 0 
+assign LEDR[1] = clock_1Hz;
 
-wire clockOneHz;
-assign reset_n = ~KEY[0];
-assign LEDR[1] = clockOneHz;
-
-sevensegment inst_0(5, 0, 0, 0, HEX0);
-tenMhzToHzDivider dividinator(ADC_CLK_10,reset_n,clockOneHz);
-
-
-always@(reset_n)
-
-end
-
+sevensegment inst_0(num_0[3:0], 0, 0, 0, HEX4);
+sevensegment inst_1(num_1[3:0], 0, 0, (num_1==0), HEX5);
 
 endmodule
