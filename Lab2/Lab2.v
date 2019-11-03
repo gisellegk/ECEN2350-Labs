@@ -60,7 +60,7 @@ always @ (negedge KEY[0])	begin
 		reg_reset <= ~reg_reset;
     end
 assign reset_n = reg_reset;
-
+assign LEDR[0] = reg_reset;
 
 dateconverter dc(binary_value, 0, month, day_1s, day_10s);
 
