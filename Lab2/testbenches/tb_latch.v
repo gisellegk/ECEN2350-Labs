@@ -1,7 +1,6 @@
 /* 
-*   Test bench for the clock divider.
-*   Generates clock signal of 10ns in period.
-*   Resets at the first full cycle's negetive edge
+*   Test bench for latch. Key[0] is theoretically pressed, and so the 
+*   output should also become high, no matter. Acts on a negative edge.
 */
 
 `timescale 1 ns / 100 ps
