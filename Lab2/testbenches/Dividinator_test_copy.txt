@@ -1,0 +1,24 @@
+VCD info: dumpfile Dividinator_test_copy.vcd opened for output.
+Starting simulation
+                1000  reset = 1,  count = 0
+            99999950  reset = 1,  count = 1
+           199999950  reset = 1,  count = 0
+           299999950  reset = 1,  count = 1
+           399999950  reset = 1,  count = 0
+           499999950  reset = 1,  count = 1
+           599999950  reset = 1,  count = 0
+           699999950  reset = 1,  count = 1
+           799999950  reset = 1,  count = 0
+           899999950  reset = 1,  count = 1
+           999999950  reset = 1,  count = 0
+          1099999950  reset = 1,  count = 1
+          1199999950  reset = 1,  count = 0
+          1299999950  reset = 1,  count = 1
+          1399999950  reset = 1,  count = 0
+          1499999950  reset = 1,  count = 1
+          1599999950  reset = 1,  count = 0
+          1699999950  reset = 1,  count = 1
+          1799999950  reset = 1,  count = 0
+          1899999950  reset = 1,  count = 1
+          1999999950  reset = 1,  count = 0
+Simulation ended.
