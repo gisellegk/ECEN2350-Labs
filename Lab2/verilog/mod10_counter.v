@@ -15,15 +15,15 @@ module mod10_counter(
 );
 
 reg [3:0] mod10_ctr;
-
 assign count = mod10_ctr;
 
-always @ (posedge clock or posedge load_enable or negedge reset_n) begin
+always @ (posedge clock or negedge load_enable or negedge reset_n) begin
     if(reset_n == 0)begin // reset
         mod10_ctr <= load;
         end
-    else if (load_enable)
+    else if (~load_enable ) begin
         mod10_ctr <= load;
+    end
     else if (mod10_ctr != 9) // has not hit top val yet
         mod10_ctr <= mod10_ctr + 1; // keep counting up 
     else // has hit top val
