@@ -50,7 +50,7 @@ wire [1:0] month; // only 4 valid: january (0), february (1), march(2), april(3)
 //=======================================================
 assign binary_value = (num_1 *10) + ({3'b0,num_0});
 
-divider div(ADC_CLK_10, reset_n, clock_1Hz);
+div10M_1 div10M_1(ADC_CLK_10, reset_n, clock_1Hz);
 mod10_counter counter_0(clock_1Hz, reset_n, num_0);
 mod10_counter counter_1((num_0==0), reset_n, num_1); // 10's place clocks every time the 1's place hits zero.
 
