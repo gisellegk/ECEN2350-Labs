@@ -35,9 +35,16 @@ module Lab2(
 
 reg reg_reset;
 wire reset_n;
+
+reg reg_clk_switch;
+wire clk_switch;
+
 wire [3:0] num_0;
 wire [3:0] num_1;
 wire clock_1Hz;
+wire clock_5Hz;
+wire clock;
+reg reg_clock;
 
 wire [6:0] binary_value;
 wire [3:0] day_1s; // 1's place of day val, can be 0-9.
@@ -50,8 +57,35 @@ wire [1:0] month; // only 4 valid: january (0), february (1), march(2), april(3)
 //=======================================================
 assign binary_value = (num_1 *10) + ({3'b0,num_0});
 
-div10M_1 div10M_1(ADC_CLK_10, reset_n, clock_1Hz);
-mod10_counter counter_0(clock_1Hz, reset_n, num_0);
+div10M_1 div1(ADC_CLK_10, reset_n, clock_1Hz);
+div10M_5 div5(ADC_CLK_10, reset_n, clock_5Hz);
+
+// KEY[1] is used as a latch for switching between the 1 Hz clock and the 5Hz. A reg type is used
+// to have a boolean statement for whether it has been pressed or not.
+always @(negedge KEY[1])
+begin
+	if (KEY[1])
+		reg_clk_switch <= ~reg_clk_switch;
+end
+
+//This will switch the clock's speed depending on if KEY[1] has been pressed and assigns it to its
+//respective clock.
+always @(*)
+begin
+if (reg_clk_switch)
+begin
+	reg_clock = clock_5Hz;
+end
+if (~reg_clk_switch)
+begin
+   reg_clock = clock_1Hz;
+end
+end
+
+//Assigns the clock to whichever clock has been toggled/
+assign clock = reg_clock;
+
+mod10_counter counter_0(clock, reset_n, num_0);
 mod10_counter counter_1((num_0==0), reset_n, num_1); // 10's place clocks every time the 1's place hits zero.
 
 //When button is pressed, will start counter.
@@ -76,6 +110,6 @@ sevensegment day_0_disp(day_1s, 0, 0, ~reset_n, HEX0);
 sevensegment day_1_disp(day_10s, 0, 0, ~reset_n | (day_10s==0),HEX1);
 
 // clock to LED
-assign LEDR[1] = clock_1Hz;
+assign LEDR[1] = clock;
 
 endmodule
