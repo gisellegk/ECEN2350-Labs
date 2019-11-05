@@ -65,15 +65,15 @@ assign LEDR[0] = reg_reset;
 dateconverter dc(binary_value, SW[9], month, day_1s, day_10s);
 
 // BCD number
-sevensegment inst_0(num_0[3:0], 0, 0, 0, HEX4);
-sevensegment inst_1(num_1[3:0], 0, 0, (num_1==0), HEX5);
+sevensegment inst_0(num_0[3:0], 0, 0, ~reset_n, HEX4);
+sevensegment inst_1(num_1[3:0], 0, 0, ~reset_n | (num_1==0), HEX5);
 
 // Month
-sevensegment month_0(month+1, 0, 0, 0, HEX2);
+sevensegment month_0(month+1, 0, 0, ~reset_n, HEX2);
 sevensegment month_1(0, 0, 0, 1, HEX3); // MSD of month is always blank
 // Day
-sevensegment day_0_disp(day_1s, 0, 0, 0, HEX0);
-sevensegment day_1_disp(day_10s, 0, 0, (day_10s==0),HEX1);
+sevensegment day_0_disp(day_1s, 0, 0, ~reset_n, HEX0);
+sevensegment day_1_disp(day_10s, 0, 0, ~reset_n | (day_10s==0),HEX1);
 
 // clock to LED
 assign LEDR[1] = clock_1Hz;
