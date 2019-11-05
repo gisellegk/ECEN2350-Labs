@@ -16,7 +16,7 @@ assign dayOnes = dayOnes_reg;
 reg [1:0]dayTens_reg;
 assign dayTens = dayTens_reg;
 
-wire leapDay = (date == 20) & leapYear;
+wire leapDay = (date == 60) & leapYear;
 
 always@(date)
 begin
@@ -26,9 +26,8 @@ begin
 			date_reg = date_reg-1;
 	end
     if(leapDay) begin
-		month_reg = 2;
-		dayOnes_reg = 9;
-		dayTens_reg = 2;
+		month_reg = 1;
+		date_reg = 29;
 	end
 	else if (date_reg <=31)
 		month_reg = 0;

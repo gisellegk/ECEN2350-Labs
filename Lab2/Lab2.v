@@ -62,7 +62,7 @@ always @ (negedge KEY[0])	begin
 assign reset_n = reg_reset;
 assign LEDR[0] = reg_reset;
 
-dateconverter dc(binary_value, 0, month, day_1s, day_10s);
+dateconverter dc(binary_value, SW[9], month, day_1s, day_10s);
 
 // BCD number
 sevensegment inst_0(num_0[3:0], 0, 0, 0, HEX4);
