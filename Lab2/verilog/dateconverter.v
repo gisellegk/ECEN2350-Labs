@@ -29,17 +29,21 @@ begin
 		month_reg = 2;
 		dayOnes_reg = 9;
 		dayTens_reg = 2;
-	    end
-	else if (date_reg <=31)
-		month_reg = 1;
-	else if (31 < date_reg && date_reg <= 59) begin
-		month_reg = 2;
-		date_reg = date_reg-31;
-		end
-	else if (59 < date_reg) begin
-		month_reg = 3;
-		date_reg = date_reg - 59;
 	end
+	else if (date_reg <=31)
+		month_reg = 0;
+	else if (31 < date_reg && date_reg <= 59) begin
+		month_reg = 1;
+		date_reg = date_reg-31;
+	end
+	else if (59 < date_reg && date_reg <=90) begin
+		month_reg = 2;
+		date_reg = date_reg - 59;
+	end 
+    else if (90 < date_reg) begin
+        month_reg = 3;
+        date_reg = date_reg - 90;
+    end
 	dayOnes_reg = date%10;
 	dayTens_reg = date/10;
 end
