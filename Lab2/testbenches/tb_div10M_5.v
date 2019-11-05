@@ -1,5 +1,4 @@
-// iverilog tb_div10M_5.v div10M_5.v; vvp a.out; gtkwave div5.vcd.vcd;
-
+// iverilog -o tb_div10M_5.out tb_div10M_5.v ../verilog/div10M_5.v; vvp tb_div10M_5.out > tb_div10M_5.txt; gtkwave div10M_5.vcd -g
 
 `timescale 1 ns / 100 ps
 
@@ -18,7 +17,7 @@ div10M_5 u1
 );
 
 initial begin
-    $dumpfile("div5.vcd");
+    $dumpfile("div10M_5.vcd");
     $dumpvars;
     $display("Starting simulation");
     clock=0;
