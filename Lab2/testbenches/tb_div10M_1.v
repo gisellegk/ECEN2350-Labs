@@ -1,16 +1,15 @@
-// iverilog -o Dividinator_test.out Dividinator_test.v ../verilog/divider.v; vvp Dividinator_test.out > Dividinator_test.txt; gtkwave Dividinator_test.vcd -g
-
+// iverilog -o tb_div10M_1.out tb_div10M_1.v ../verilog/div10M_1.v; vvp div10M_1.out > div10M_1.txt; gtkwave div10M_1.vcd -g
 
 `timescale 1 ns / 100 ps
 
-module Dividinator_test_copy();
+module tb_div10M_1();
 
 reg clock;
 reg reset;
 
 wire count_out;
 
-divider_copy u1 
+div10M_1 u1 
 (
     .clock(clock),
     .reset_n(reset),
@@ -18,7 +17,7 @@ divider_copy u1
 );
 
 initial begin
-    $dumpfile("Dividinator_test_copy.vcd");
+    $dumpfile("div10M_1.vcd");
     $dumpvars;
     $display("Starting simulation");
     clock=0;

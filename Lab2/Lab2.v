@@ -52,9 +52,15 @@ wire load_enable;
 assign binary_value = (num_1 *10) + ({3'b0,num_0});
 assign load_enable = ~reset_n;
 
+<<<<<<< HEAD
 divider div(ADC_CLK_10, reset_n, clock_1Hz);
 mod10_counter counter_0(clock_1Hz, reset_n, load_enable, 4'b1, num_0);
 mod10_counter counter_1((num_0==0), reset_n, load_enable, 4'b0, num_1); // 10's place clocks every time the 1's place hits zero.
+=======
+div10M_1 div10M_1(ADC_CLK_10, reset_n, clock_1Hz);
+mod10_counter counter_0(clock_1Hz, reset_n, num_0);
+mod10_counter counter_1((num_0==0), reset_n, num_1); // 10's place clocks every time the 1's place hits zero.
+>>>>>>> 198f52f33ff85b499ced5a2ebcabe2aea571a77a
 
 //When button is pressed, will start counter.
 //When pressed again, sets its back to 0 until button is pressed again to restart the counter.
