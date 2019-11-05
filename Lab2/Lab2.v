@@ -44,15 +44,17 @@ wire [3:0] day_1s; // 1's place of day val, can be 0-9.
 wire [1:0] day_10s; // 10's place of day val, can be 0, 1, 2, 3
 wire [1:0] month; // only 4 valid: january (0), february (1), march(2), april(3)
 
+wire load_enable;
 
 //=======================================================
 //  Structural coding
 //=======================================================
 assign binary_value = (num_1 *10) + ({3'b0,num_0});
+assign load_enable = ~reset_n;
 
 divider div(ADC_CLK_10, reset_n, clock_1Hz);
-mod10_counter counter_0(clock_1Hz, reset_n, num_0);
-mod10_counter counter_1((num_0==0), reset_n, num_1); // 10's place clocks every time the 1's place hits zero.
+mod10_counter counter_0(clock_1Hz, reset_n, load_enable, 4'b1, num_0);
+mod10_counter counter_1((num_0==0), reset_n, load_enable, 4'b0, num_1); // 10's place clocks every time the 1's place hits zero.
 
 //When button is pressed, will start counter.
 //When pressed again, sets its back to 0 until button is pressed again to restart the counter.
