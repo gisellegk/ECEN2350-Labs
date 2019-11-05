@@ -44,7 +44,7 @@ begin
         month_reg = 3;
         date_reg = date_reg - 90;
     end
-	dayOnes_reg = date%10;
-	dayTens_reg = date/10;
+	dayOnes_reg = date_reg%10;
+	dayTens_reg = date_reg/10;
 end
 endmodule

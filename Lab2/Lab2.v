@@ -73,7 +73,7 @@ sevensegment month_0(month+1, 0, 0, 0, HEX2);
 sevensegment month_1(0, 0, 0, 1, HEX3); // MSD of month is always blank
 // Day
 sevensegment day_0_disp(day_1s, 0, 0, 0, HEX0);
-sevensegment day_1_disp(day_10s, 0, 0, (day_1==0),HEX1);
+sevensegment day_1_disp(day_10s, 0, 0, (day_10s==0),HEX1);
 
 // clock to LED
 assign LEDR[1] = clock_1Hz;
