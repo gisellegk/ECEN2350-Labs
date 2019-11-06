@@ -1,0 +1,24 @@
+VCD info: dumpfile tb_reset_n.vcd opened for output.
+Starting simulation
+                1000  reset = 1,  count_one = 0, count_five = &b0
+           100000050  reset = 1,  count_one = 0, count_five = &b1
+           200000050  reset = 1,  count_one = 0, count_five = &b0
+           300000050  reset = 1,  count_one = 0, count_five = &b1
+           400000050  reset = 1,  count_one = 0, count_five = &b0
+           500000050  reset = 1,  count_one = 1, count_five = &b1
+           600000050  reset = 1,  count_one = 1, count_five = &b0
+           700000050  reset = 1,  count_one = 1, count_five = &b1
+           800000050  reset = 1,  count_one = 1, count_five = &b0
+           900000050  reset = 1,  count_one = 1, count_five = &b1
+          1000000050  reset = 1,  count_one = 0, count_five = &b0
+          1100000050  reset = 1,  count_one = 0, count_five = &b1
+          1200000050  reset = 1,  count_one = 0, count_five = &b0
+          1300000050  reset = 1,  count_one = 0, count_five = &b1
+          1400000050  reset = 1,  count_one = 0, count_five = &b0
+          1500000050  reset = 1,  count_one = 1, count_five = &b1
+          1600000050  reset = 1,  count_one = 1, count_five = &b0
+          1700000050  reset = 1,  count_one = 1, count_five = &b1
+          1800000050  reset = 1,  count_one = 1, count_five = &b0
+          1900000050  reset = 1,  count_one = 1, count_five = &b1
+          2000000050  reset = 1,  count_one = 0, count_five = &b0
+Simulation ended.

@@ -1,0 +1,22 @@
+VCD info: dumpfile div10M_1.vcd opened for output.
+Starting simulation
+                1000  reset = 1,  count = 0
+** VVP Stop(0) **
+** Flushing output streams.
+** Current simulation time is 2559862500 ticks.
+> 
+> :q
+Unknown command: :q
+Try the help command to get a summary
+of available commands.
+> stop
+Unknown command: stop
+Try the help command to get a summary
+of available commands.
+> sotp
+Unknown command: sotp
+Try the help command to get a summary
+of available commands.
+> $stop
+The simulator is already stopped!
+> 
