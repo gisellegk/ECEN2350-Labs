@@ -9,25 +9,31 @@
 module mod10_counter(
     input               clock,
     input               reset_n,
-    input               load_enable,
     input        [3:0]  load,
-	output		 [3:0]  count
+	output		 [3:0]  count,
+    output       [3:0]  count_tens
 );
 
-reg [3:0] mod10_ctr;
-assign count = mod10_ctr;
+reg [3:0] count_reg;
+reg [3:0] count_tens_reg;
+assign count = count_reg;
+assign count_tens = count_tens_reg;
 
-always @ (posedge clock or negedge load_enable or negedge reset_n) begin
-    if(reset_n == 0)begin // reset
-        mod10_ctr <= load;
-        end
-    else if (~load_enable ) begin
-        mod10_ctr <= load;
+always @ (posedge clock or negedge reset_n) begin
+    if(reset_n == 0) begin // reset
+        count_reg <= load;
+        count_tens_reg <= 0;
     end
-    else if (mod10_ctr != 9) // has not hit top val yet
-        mod10_ctr <= mod10_ctr + 1; // keep counting up 
+    else if (count_reg == 9 & count_tens_reg == 9) begin// has not hit top val yet
+        count_reg <= load;
+        count_tens_reg <= 0;
+    end
+    else if (count_reg == 9) begin
+        count_reg <= 0;
+        count_tens_reg <= count_tens_reg + 1;
+    end
     else // has hit top val
-        mod10_ctr <= 0; // reset
+        count_reg <= count_reg + 1; // keep counting up 
 end
 
 endmodule
